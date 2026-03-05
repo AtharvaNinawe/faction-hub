@@ -1,0 +1,541 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Hub India - Login</title>
+    <marquee behavior="scroll" direction="right">𒆜𝙁𝒂𝘴Ꮵ𝔦оท𝘏𝘶𝙗𒆜</marquee>
+    <style>
+        /* Body and Overall Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: black;
+        }
+        header {
+            background-color: #ff5722;
+            color: gray;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: gray;
+        }
+        nav a {
+            color: black;
+            padding: 15px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: darkgray;
+        }
+        .container {
+            padding: 20px;
+            display: none; /* Hide all sections initially */
+        }
+        .container.active {
+            display: block; /* Show the active section */
+        }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .product {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: calc(25% - 40px);
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product h3 {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #ff5722;
+        }
+        .product p {
+            font-size: 1em;
+            color: #555;
+        }
+        footer {
+            background-color: #ff5722;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .product {
+                width: calc(50% - 40px);
+            }
+        }
+        @media (max-width: 480px) {
+            .product {
+                width: calc(100% - 40px);
+            }
+        }
+        /* Login Page Styling */
+        .login-container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background: #ff5722;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-btn:hover {
+            background: #e64a19;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            var sections = document.getElementsByClassName('container');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Dummy user credentials
+        const validCredentials = {
+            username: "admin",
+            password: "1234"
+        };
+
+        // Function to handle login
+        function validateLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (username === validCredentials.username && password === validCredentials.password) {
+                errorMessage.textContent = "";
+                alert("Login Successful!");
+                showSection('home');
+            } else {
+                errorMessage.textContent = "Invalid username or password. Please try again.";
+            }
+        }
+
+        // Set initial active section
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('login'); // Set to login by default
+        });
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Fashion Hub India</h1>
+</header>
+
+<nav>
+    <a href="javascript:void(0);" onclick="showSection('login')">Login</a>
+    <a href="javascript:void(0);" onclick="showSection('home')">Home</a>
+    <a href="javascript:void(0);" onclick="showSection('men')">Men</a>
+    <a href="javascript:void(0);" onclick="showSection('women')">Women</a>
+    <a href="javascript:void(0);" onclick="showSection('kids')">Kids</a>
+    <a href="javascript:void(0);" onclick="showSection('sale')">Sale</a>
+</nav>
+
+<div id="login" class="container">
+    <div class="login-container">
+        <h2>Login</h2>
+        <div id="error-message" class="error"></div>
+        <form onsubmit="validateLogin(event)">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+    </div>
+</div>
+
+<div id="home" class="container">
+    <h2>Welcome to Fashion Hub India!</h2>
+    <p>Discover the latest trends in Indian fashion.</p>
+</div>
+
+<div id="men" class="container">
+    <h2>Men's Collection</h2>
+    <div class="product-container">
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Men's Kurta">
+            <h3>Men's Kurta</h3>
+            <p>₹999</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Men's Sherwani">
+            <h3>Men's Sherwani</h3>
+            <p>₹5,499</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Men's Jeans">
+            <h3>Men's Jeans</h3>
+            <p>₹1,499</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Men's T-Shirt">
+            <h3>Men's T-Shirt</h3>
+            <p>₹799</p>
+        </div>
+        <!-- Additional items -->
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Men's Blazer">
+            <h3>Men's Blazer</h3>
+            <p>₹3,499</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Men's Casual Shirt">
+            <h3>Men's Casual Shirt</h3>
+            <p>₹1,299</p>
+        </div>
+    </div>
+</div>/
+<div id="women" class="container">
+    <h2>Women's Collection</h2>
+    <div class="product-container">
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Saree">
+            <h3>Saree</h3>
+            <p>₹1,999</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Lehenga">
+            <h3>Lehenga</h3>
+            <p>₹3,999</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Anarkali Suit">
+            <h3>Anarkali Suit</h3>
+            <p>₹2,499</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Women's Kurti">
+            <h3>Women's Kurti</h3>
+            <p>₹1,299</p>
+        </div>
+        <!-- Additional items -->
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Women's Top">
+            <h3>Women's Top</h3>
+            <p>₹799</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Women's Palazzo">
+            <h3>Women's Palazzo</h3>
+            <p>₹1,199</p>
+        </div>
+    </div>
+</div>
+
+<div id="kids" class="container">
+    <h2>Kids' Collection</h2>
+    <h3>Boys</h3>
+    <div class="product-container">
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Boy's Kurta">
+            <h3>Boy's Kurta</h3>
+            <p>₹799</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Boy's T-Shirt">
+            <h3>Boy's T-Shirt</h3>
+            <p>₹399</p>
+        </div>
+        <!-- Additional items -->
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Boy's Shorts">
+            <h3>Boy's Shorts</h3>
+            <p>₹499</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Boy's Jacket">
+            <h3>Boy's Jacket</h3>
+            <p>₹999</p>
+        </div>
+    </div>
+    <h3>Girls</h3>
+    <div class="product-container">
+        <div class="product">
+        <h3>Girl's Dress</h3>
+            <p>₹1,099</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Girl's Lehenga">
+            <h3>Girl's Lehenga</h3>
+            <p>₹1,799</p>
+        </div>
+    </div>
+</div>
+
+<div id="sale" class="container">
+    <h2>Sale Items</h2>
+    <div class="product-container">
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Sale Kurta">
+            <h3>Sale Kurta</h3>
+            <p>₹499</p>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300x400" alt="Sale Saree">
+            <h3>Sale Saree</h3>
+            <p>₹1,299</p>
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <p>&copy; 2024 Fashion Hub India. All rights reserved.</p>
+</footer>
+
+</body>
+</html><style>body {
+    font-family: 'Arial', sans-serif;
+    margin: 1;
+    padding: 1;
+    background-color: #f5f5f5; /* Light gray background for a neutral look */
+    color: #222; /* Dark gray text for readability */
+    line-height: 1.6; /* Improve readability with increased line height */
+}
+
+header {
+    background-color: #333; /* Dark gray background for a sleek header */
+    color: #fff;
+    padding: 40px 0; /* Spacious header */
+    text-align: center;
+    animation: slideDown 0.8s ease-out; /* Slide-down animation */
+}
+
+header h1 {
+    margin: 0.1;
+    font-size: 3em; /* Large font size for emphasis */
+    text-transform: uppercase;
+    letter-spacing: 4px; /* Increased spacing for a modern look */
+    font-weight: 700; /* Bold text for impact */
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #444; /* Darker gray for navigation */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for nav */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: fadeIn 1s ease-out;
+}
+
+nav a {
+    color: #fff;
+    padding: 15px 20px; /* Compact design */
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 600; /* Sleeker look */
+}
+
+nav a:hover {
+    background-color: #555; /* Slightly darker gray hover effect */
+    transform: scale(1.05); /* Subtle hover effect */
+}
+
+.container {
+    padding: 60px 20px; /* Spacious container padding */
+    display: none;
+    animation: fadeIn 0.8s ease-out; /* Faster fade-in animation */
+}
+
+.container.active {
+    display: block;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #222; /* Consistent dark gray color */
+    text-transform: uppercase;
+    animation: zoomIn 0.8s ease-out; /* Zoom-in animation */
+    font-weight: 600; /* Medium weight for headings */
+}
+
+h3 {
+    font-size: 1.8em;
+    margin: 20px 0;
+    color: #555; /* Lighter gray for subheadings */
+    text-transform: uppercase;
+}
+
+/* Product Styles */
+.product {
+    border: 1px solid #ccc; /* Light gray border for a cleaner look */
+    padding: 25px;
+    margin: 20px;
+    display: inline-block;
+    width: calc(33.333% - 40px);
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #fff; /* White background for product */
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    animation: bounceIn 0.8s ease-out; /* Bounce-in animation */
+    border-radius: 12px; /* Rounded corners */
+}
+
+.product:hover {
+    transform: translateY(-8px); /* Subtle hover lift */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px; /* Spacing for images */
+    transition: transform 0.3s;
+    border-radius: 8px; /* Rounded corners for images */
+}
+
+.product img:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.product p {
+    font-size: 1.2em; /* Larger font size for prices */
+    color: #333; /* Dark gray for prices */
+    font-weight: 700; /* Bold font for emphasis */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .product {
+        width: calc(50% - 30px); /* Adjusted layout for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .product {
+        width: calc(100% - 20px); /* Full width for very small screens */
+    }
+    nav {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+    nav a {
+        padding: 10px 15px;
+    }
+}
+
+/* Keyframes for Animations */
+@keyframes slideupword {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}</style>
